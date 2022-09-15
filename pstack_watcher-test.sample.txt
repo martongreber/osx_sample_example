@@ -1,0 +1,25 @@
+Analysis of sampling pstack_watcher-test (pid 16082) every 1 millisecond
+Call graph:
+    1 Thread_251063   DispatchQueue_1: com.apple.main-thread  (serial)
+      1 start  (in dyld) + 520  [0x102f910f4]
+        1 main  (in libkudu_test_main.dylib) + 576  [0x102df0b28]  test_main.cc:109
+          1 RUN_ALL_TESTS()  (in libkudu_test_main.dylib) + 16  [0x102df0dd0]  gtest.h:2293
+            1 testing::UnitTest::Run()  (in libgtest.1.12.1.dylib) + 124  [0x103a4ec38]  gtest.cc:5444
+              1 bool testing::internal::HandleExceptionsInMethodIfSupported<testing::internal::UnitTestImpl, bool>(testing::internal::UnitTestImpl*, bool (testing::internal::UnitTestImpl::*)(), char const*)  (in libgtest.1.12.1.dylib) + 100  [0x103a4ecd0]  gtest.cc:2635
+                1 testing::internal::UnitTestImpl::RunAllTests()  (in libgtest.1.12.1.dylib) + 2240  [0x103a4f734]  gtest.cc:5870
+                  1 testing::TestSuite::Run()  (in libgtest.1.12.1.dylib) + 524  [0x103a3eb0c]  gtest.cc:3012
+                    1 testing::TestInfo::Run()  (in libgtest.1.12.1.dylib) + 532  [0x103a3e028]  gtest.cc:2853
+                      1 testing::Test::Run()  (in libgtest.1.12.1.dylib) + 452  [0x103a3cd28]  gtest.cc:2674
+                        1 void testing::internal::HandleExceptionsInMethodIfSupported<testing::Test, void>(testing::Test*, void (testing::Test::*)(), char const*)  (in libgtest.1.12.1.dylib) + 100  [0x103a3cddc]  gtest.cc:2635
+                          1 kudu::TestPstackWatcher_TestDumpStacks_Test::TestBody()  (in pstack_watcher-test) + 36  [0x102c4e754]  pstack_watcher-test.cc:57
+                            1 kudu::PstackWatcher::DumpStacks(int)  (in libkudu_util.dylib) + 40  [0x103ea0a1c]  pstack_watcher.cc:162
+                              1 kudu::PstackWatcher::DumpPidStacks(int, int)  (in libkudu_util.dylib) + 1140  [0x103ea1dec]  pstack_watcher.cc:185
+                                1 kudu::PstackWatcher::RunSampleStackDump(int)  (in libkudu_util.dylib) + 244  [0x103ea24fc]  pstack_watcher.cc:242
+                                  1 kudu::PstackWatcher::RunStackDump(std::__1::vector<std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::allocator<std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > > > const&)  (in libkudu_util.dylib) + 772  [0x103ea2c4c]  pstack_watcher.cc:258
+                                    1 kudu::Subprocess::Wait(int*)  (in libkudu_util.dylib) + 44  [0x103fc1510]  subprocess.cc:546
+                                      1 kudu::Subprocess::DoWait(int*, kudu::Subprocess::WaitMode)  (in libkudu_util.dylib) + 524  [0x103fc1728]  subprocess.cc:815
+                                        1 __wait4  (in libsystem_kernel.dylib) + 8  [0x1c5154930]
+
+Total number in stack (recursive counted multiple, when >=5):
+
+Sort by top of stack, same collapsed (when >= 5):
